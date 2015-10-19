@@ -1,63 +1,46 @@
 import java.util.ArrayList;
 
 public class Alumno {
-	
+	//Preguntar si es adecuado que la lista sea de Matriculas y no de Cursos
+	private ArrayList<Matricula> listaDeMatriculas;
 	private String nombre;
 	private String apellidos;
 	private String dni;
-	private ArrayList<Curso> cursos;
 	
-	public Alumno (String nombre, String apellidos, String dni) {
+	public Alumno(String nombre, String apellidos, String dni) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
-		cursos = new ArrayList<Curso>();
+		listaDeMatriculas = new ArrayList<Matricula>();
 	}
-	private void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	private void setApellidos(String Apellidos) {
-		this.apellidos = apellidos;
-	}
-	public String getApellidos() {
-		return apellidos;
-	}
-	private void setDni(String dni) {
-		this.dni = dni;
-	}
-	public String getDni() {
-		return dni;
-	}
-	public void setCursos(ArrayList<Curso> listaDeCursos) {
-		/**
-		 * Esto casi seguro que no es asi, habra que copiarlos de uno en uno.
-		 * Para utilizar el objeto que creamos con el constructor.
-		 */
-		cursos = (ArrayList<Curso>) listaDeCursos.clone();
-	}
-	public ArrayList<Curso> getCursos() {
-
-		return cursos;
-	}
-	
-	public void inscribeCurso(Curso nuevoCurso) {
-		cursos.add(nuevoCurso);
-	}
-	public void eliminaCurso(Curso cursoEliminado) {
-
-				cursos.remove(cursoEliminado);
-	}
-	
-	public double calculaDeuda() {
-		double deudaAcumulada = 0;
-		for(int i = 0; i < cursos.size(); i++) {
-			deudaAcumulada =+ cursos.get(i).getImporte();
+	public double calculaDeuda(){
+		double deudaAcumulada = 0.0;
+		for(int i = 0; i < listaDeMatriculas.size(); i++) {
+			if(!listaDeMatriculas.get(i).isPagado()) {
+				deudaAcumulada =+ listaDeMatriculas.get(i).getPrecio();
+			}
 		}
 		return deudaAcumulada;
 	}
-	
-	
+	public void matricular(Curso curso) {
+		listaDeMatriculas.add(new Matricula(curso));
+	}
+	public void pagar(Curso curso) {
+
+		for(int i = 0; i < listaDeMatriculas.size(); i++) {
+			if(curso == listaDeMatriculas.get(i).getCurso && !listaDeMatriculas.get(i).isPagado) {
+				listaDeMatriculas.get(i).marcaPagado();
+				
+			}
+		}
+	}
+
+	public boolean equals(Alumno alumno) {
+
+		if(this.dni == alumno.dni) {
+			return true;
+		}
+		return false;
+	}
+
 }

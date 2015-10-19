@@ -29,10 +29,9 @@ public class Curso {
 		this.precio = precio;
 		inscritos = new ArrayList<Alumno>();
 		this.code = idioma.substring(0, 2) + nivel;
-		/*
-		 * code se forma a partir de las tres primeras letras del idioma mas el
-		 * nivel
-		 */
 
+	}
+	public void añadirAlumno(Alumno alumno) {
+		inscritos.contains(alumno);
 	}
 }
