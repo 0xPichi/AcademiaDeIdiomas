@@ -54,7 +54,7 @@ public class Alumno {
 	public double calculaDeuda() {
 		double deudaAcumulada = 0;
 		for(int i = 0; i < cursos.size(); i++) {
-			deudaAcumulada =+ cursos.get(i).getImporte();
+			deudaAcumulada =+ cursos.get(i).getImporte(;
 		}
 		return deudaAcumulada;
 	}
