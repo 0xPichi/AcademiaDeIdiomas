@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Alumno {
-	// Preguntar si es adecuado que la lista sea de Matriculas y no de Cursos
-	private ArrayList<Matricula> listaDeMatriculas;// no hace falta
+	private ArrayList<Matricula> listaDeMatriculas;
 	private String nombre;
 	private String apellidos;
 	private String dni;
@@ -24,10 +23,8 @@ public class Alumno {
 		return deudaAcumulada;
 	}
 
-	public void matricular(Curso curso) { // seria mejor hacerlo en academia, y
-											// que la lista se haga en el
-											// momento de peticion
-		listaDeMatriculas.add(new Matricula(dni, curso));
+	public void matricular(Matricula nuevaMatricula) { 
+		listaDeMatriculas.add(nuevaMatricula);
 	}
 
 	public void pagar(Curso curso) {
@@ -38,14 +35,6 @@ public class Alumno {
 
 			}
 		}
-	}
-
-	public boolean equals(Alumno alumno) {
-
-		if (this.dni == alumno.dni) {
-			return true;
-		}
-		return false;
 	}
 
 	public String getNombre() {

@@ -5,7 +5,6 @@ public class Matricula {
 	private boolean pagado;
 
 	public Matricula(Alumno alumno, Curso curso) {
-		// TODO Auto-generated constructor stub
 		this.alumno = alumno;
 		this.curso = curso;
 		numMatr = 0;
@@ -16,11 +15,19 @@ public class Matricula {
 		return pagado;
 	}
 
-	public double getPrecio() { // devuelve desde curso, esta bien?
+	public double getPrecio() { 
 		return curso.getPrecio();
 	}
 
 	public Curso getCurso() {
 		return curso;
+	}
+	
+	public Alumno getAlumno() {
+		return alumno;
+	}
+	
+	public void marcaPagado() {
+		pagado = true;
 	}
 }
