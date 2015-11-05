@@ -7,13 +7,12 @@ public class Curso {
 	private int nivel;
 	private int fInicio;
 	private int fFinal;
-	private ArrayList<String> horario;
+	private int horario;
 	/*
-	 * Horario habra que preguntar si es simplemente una hora o son que dias y a
-	 * que horas se imparte
+	 * Se entiende que horario es a una hora todos los dias de la semana (hasta las 8 maximo creo)
 	 */
 	private final int maxAlumnos;
-	private final int precio;
+	private final double precio;
 	private ArrayList<Alumno> inscritos;
 
 	public Curso(String idioma, int nivel, int fInicio, int fFinal, int maxAlumnos, int precio) {
@@ -21,7 +20,7 @@ public class Curso {
 		this.nivel = nivel;
 		this.fInicio = fInicio;
 		this.fFinal = fFinal;
-		horario = new ArrayList<String>();
+		horario = new ArrayList<int>(); //Tu sabras, Pichi
 		/*
 		 * horario esta sin acabar, hay que hacer copy con el ArrayList
 		 */
@@ -33,5 +32,9 @@ public class Curso {
 	}
 	public void añadirAlumno(Alumno alumno) {
 		inscritos.contains(alumno);
+	}
+	
+	public double getPrecio (){
+		return precio;
 	}
 }
