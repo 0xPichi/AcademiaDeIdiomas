@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Alumno {
+	private ArrayList<Curso> listaDeCursos;
 	private ArrayList<Matricula> listaDeMatriculas;
 	private String nombre;
 	private String apellidos;
@@ -10,43 +11,39 @@ public class Alumno {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
+		listaDeCursos = new ArrayList<Curso>();
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
-
-	public double calculaDeuda() {
-		double deudaAcumulada = 0.0;
-		for (int i = 0; i < listaDeMatriculas.size(); i++) {
-			if (!listaDeMatriculas.get(i).isPagado()) {
-				deudaAcumulada = +listaDeMatriculas.get(i).getPrecio();
-			}
+	
+	public float calculaDeuda() {
+		float deudaAcumulada = 0;
+		for(int i = 0; i < listaDeMatriculas.size(); i++) {
+			deudaAcumulada += listaDeMatriculas.get(i).getPrecioDeMatricula();
 		}
 		return deudaAcumulada;
 	}
-
-	public void matricular(Matricula nuevaMatricula) { 
-		listaDeMatriculas.add(nuevaMatricula);
+	public ArrayList<Curso> getListaDeCursos() {
+		return listaDeCursos;
 	}
-
-	public void pagar(Curso curso) {
-
-		for (int i = 0; i < listaDeMatriculas.size(); i++) {
-			if (curso == listaDeMatriculas.get(i).getCurso() && !listaDeMatriculas.get(i).isPagado()) {
-				listaDeMatriculas.get(i).marcaPagado();
-
-			}
-		}
+	public ArrayList<Matricula> getListaDeMatriculas() {
+		return listaDeMatriculas;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public String getApellidos() {
 		return apellidos;
 	}
-
 	public String getDni() {
+
 		return dni;
 	}
-
+	@Override
+	public boolean equals(Object alumno) {
+		if(this.dni != ((Alumno) alumno).getDni()) {
+			return false;
+		}
+		return true;
+		
+	}
 }
