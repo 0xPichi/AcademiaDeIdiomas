@@ -1,3 +1,13 @@
+
+/**
+ * 
+ * Clase <code>Matricula</code>
+ * 
+ * @author Sergio Delgado Álvarez
+ * @author Miguel Bayón Sanz
+ * @author Daniel Paredes Santamaría
+ *
+ */
 public class Matricula {
 	private Alumno alumno;
 	private Curso curso;
@@ -7,39 +17,51 @@ public class Matricula {
 	public Matricula(Alumno alumno, Curso curso) {
 		this.alumno = alumno;
 		this.curso = curso;
-		numMatr = (int) Math.floor(Math.random()+1 *1000);
+		numMatr = (int) Math.floor(Math.random() + 1 * 1000);
 		pagado = false;
+		alumno.addMatricula(this);
 	}
+
 	public int getMtriculaId() {
 		return numMatr;
 	}
+
 	public boolean isPagado() {
 		return pagado;
 	}
-	public double getPrecio() { 
+
+	public double getPrecio() {
 		return curso.getPrecio();
 	}
+
 	public Curso getCurso() {
 		return curso;
 	}
+
 	public Alumno getAlumno() {
 		return alumno;
 	}
+
 	public void marcaPagado() {
 		pagado = true;
 	}
+
 	public void subirNivel() {
-		if(curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(this.alumno)) {
+		if (curso.getCursoSuperior() != null 
+				&& curso.getCursoSuperior().plazaDisponible(this.alumno)) {
 			this.curso = curso.getCursoSuperior();
 		}
 	}
+
 	public void bajarNivel() {
-		if(curso.getCursoInferior() != null && curso.getCursoInferior().plazaDisponible(this.alumno)) {
+		if (curso.getCursoInferior() != null 
+				&& curso.getCursoInferior().plazaDisponible(this.alumno)) {
 			this.curso = curso.getCursoInferior();
 		}
 	}
+
 	public float getPrecioDeMatricula() {
-		if(this.isPagado()) {
+		if (this.isPagado()) {
 			return 0;
 		}
 		return curso.getPrecio();
