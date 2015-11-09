@@ -29,8 +29,13 @@ public class Curso {
 			, float precio, Curso cursoNivelSuperior, Curso cursoNivelInferior) {
 		this.idioma = idioma;
 		this.nivel = nivel;
-		this.fInicio = fInicio;
-		this.fFinal = fFinal;
+		/*if(fInicio.after(fFinal))	{
+			this.fInicio = fInicio;
+			this.fFinal = fFinal;
+		}else {
+			this.fInicio = fFinal;
+			this.fFinal = fInicio;
+		}*/
 		this.horario = horario;
 		this.maxAlumnos = maxAlumnos;
 		this.precio = precio;
@@ -38,7 +43,7 @@ public class Curso {
 		this.cursoNivelSuperior = cursoNivelSuperior;
 		this.inscritos = new ArrayList<Alumno>();
 		this.matriculasDelCurso = new ArrayList<Matricula>();
-		this.codigo = idioma.substring(0, 2) + nivel;
+		this.codigo = idioma.substring(0, 3) + nivel;
 
 	}
 
@@ -85,7 +90,21 @@ public class Curso {
 	public Calendar getHorario() {
 		return horario;
 	}
+	
+	public void setSuperior(Curso cursoSuperior) {
+		this.cursoNivelSuperior = cursoSuperior;
+	}
+	
+	public void setInferior(Curso cursoInferior) {
+		this.cursoNivelInferior = cursoInferior;
+	}
 
+	public void eliminaAlumno(Alumno alumno) {
+		inscritos.remove(alumno);
+	}
+	public void agregaAlumno(Alumno alumno) {
+		inscritos.add(alumno);
+	}
 	public ArrayList<Matricula> getListaMatriculas() {
 		return matriculasDelCurso;
 	}
@@ -101,21 +120,30 @@ public class Curso {
 	}
 
 	public Matricula matricular(Alumno alumno) {
-		if (this.plazaDisponible(alumno)) {
-			return new Matricula(alumno, this);
+		if (plazaDisponible(alumno)) {
+			inscritos.add(alumno);
+			matriculasDelCurso.add(new Matricula(alumno, this));
+			return matriculasDelCurso.get(matriculasDelCurso.size()-1);
 		}
 		return null;
 	}
 
 	public boolean plazaDisponible(Alumno alumno) {
-		if (maxAlumnos < inscritos.size()) {
+		if (maxAlumnos > inscritos.size()) {
 			for (int i = 0; i < inscritos.size(); i++) {
 				if (inscritos.get(i).equals(alumno)) {
 					return false;
+					
 				}
 			}
 			return true;
 		} else
 			return false;
+	}
+	
+	@Override
+	public String toString() {
+		return "Curso: " + this.codigo + "; Idioma: " + this.idioma + "; Nivel: " + this.nivel;
+		
 	}
 }

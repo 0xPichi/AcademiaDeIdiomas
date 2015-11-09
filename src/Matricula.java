@@ -75,7 +75,7 @@ public class Matricula {
 	/**
 	 * Metodo que cambia el valor del atributo <code>pagado</code> a true
 	 */
-	public void marcaPagado() {
+	public void pagar() {
 		pagado = true;
 	}
 
@@ -84,7 +84,10 @@ public class Matricula {
 	 * el atributo <code>curso</code>
 	 */
 	public void subirNivel() {
-		if (curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(this.alumno)) {
+		if (curso.getCursoSuperior() != null 
+				&& curso.getCursoSuperior().plazaDisponible(this.alumno)) {
+			this.curso.eliminaAlumno(alumno);
+			this.curso.getCursoSuperior().agregaAlumno(alumno);
 			this.curso = curso.getCursoSuperior();
 		}
 	}
@@ -94,7 +97,10 @@ public class Matricula {
 	 * el atributo <code>curso</code>
 	 */
 	public void bajarNivel() {
-		if (curso.getCursoInferior() != null && curso.getCursoInferior().plazaDisponible(this.alumno)) {
+		if (curso.getCursoInferior() != null 
+				&& curso.getCursoInferior().plazaDisponible(this.alumno)) {
+			this.curso.eliminaAlumno(alumno);
+			this.curso.getCursoInferior().agregaAlumno(alumno);
 			this.curso = curso.getCursoInferior();
 		}
 	}
@@ -105,7 +111,7 @@ public class Matricula {
 	 * @return float con el valor de la deuda de la matricula
 	 */
 	public float getPrecioDeMatricula() {
-		if (this.isPagado()) {
+		if (isPagado()) {
 			return 0;
 		}
 		return curso.getPrecio();
