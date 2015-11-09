@@ -16,11 +16,10 @@ public class Alumno {
 	/**
 	 * Constructor de la clase <code>Alumno</code>
 	 * 
-	 * 
+	 * listaDeMatriculas inicializa el ArrayList con una lista vacía
 	 * @param nombre String con el nombre de <code>Alumno</code>
 	 * @param apellidos String con los apellidos de <code>Alumno</code>
 	 * @param dni String con el dni/nif de <code>Alumno</code>
-	 * 
 	 */
 	public Alumno(String nombre, String apellidos, String dni) {
 		this.nombre = nombre;
