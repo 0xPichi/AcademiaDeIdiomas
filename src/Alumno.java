@@ -117,7 +117,13 @@ public class Alumno {
 		listaDeMatriculas.add(matricula);
 
 	}
-	
+	/**
+	 * Sobreescribe el metodo toString() de la clase <code>Object</code>
+	 * 
+	 * Devuelve una cadena de caracteres con el formato: Nombre: xxxx; Apellidos: xxxx; DNI: xxx.
+	 * 
+	 * @return String cadena de caracteres que representa el estado del objeto <code>Alumno</code>
+	 */
 	@Override
 	public String toString (){
 		return "Nombre: " + nombre + "; Apellidos: " + apellidos + "; DNI: " + dni;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * 
@@ -19,13 +20,13 @@ public class Academia {
 		
 		//Creamos 3 cursos de Ingles con un nivel diferente y uno de Aleman y los agregamos a una lista.
 		
-		Curso ingles1 = new Curso("Ingles", 1, null, null, null, 10, 25, null, null);
-		Curso ingles2 = new Curso("Ingles", 2, null, null, null, 12, 35, null, ingles1);
-		Curso ingles3 = new Curso("Ingles", 3, null, null, null, 2, 50, null, ingles2);
+		Curso ingles1 = new Curso("Ingles", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 10, 25, null, null);
+		Curso ingles2 = new Curso("Ingles", 2, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 20, 12, 35, null, ingles1);
+		Curso ingles3 = new Curso("Ingles", 3, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 17, 2, 50, null, ingles2);
 		ingles1.setSuperior(ingles2);
 		ingles2.setSuperior(ingles3);
 		ingles2.setInferior(ingles1);
-		Curso aleman1 = new Curso("Aleman", 1, null, null, null, 15, 30, null, null);
+		Curso aleman1 = new Curso("Aleman", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 12, 15, 30, null, null);
 		listaCursos.add(ingles1);
 		listaCursos.add(ingles2);
 		listaCursos.add(ingles3);

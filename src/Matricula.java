@@ -32,7 +32,7 @@ public class Matricula {
 	/**
 	 * Getter del atributo <code>numMatr</code>
 	 * 
-	 * @return numMatr int con el código de <code>Matricula</code>
+	 * @return numMatr Numero entero con el código de <code>Matricula</code>
 	 */
 	public int getMtriculaId() {
 		return numMatr;
