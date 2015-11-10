@@ -48,18 +48,18 @@ public class Curso {
 	 *            Curso de nivel inferior asociado a la clase <code>Curso</code>
 	 */
 
-	public Curso(String idioma, int nivel, Calendar fInicio, Calendar fFinal, int horario, int maxAlumnos,
-			float precio, Curso cursoNivelSuperior, Curso cursoNivelInferior) {
+	public Curso(String idioma, int nivel, Calendar fInicio, Calendar fFinal, int horario, int maxAlumnos, float precio,
+			Curso cursoNivelSuperior, Curso cursoNivelInferior) {
 		this.idioma = idioma;
 		this.nivel = nivel;
-		if(fInicio.after(fFinal)) {
+		if (fInicio.after(fFinal)) {
 			this.fInicio = fInicio;
 			this.fFinal = fFinal;
 		} else {
 			this.fInicio = fFinal;
 			this.fFinal = fInicio;
 		}
-		if(horario  > 8 || horario < 21) {
+		if (horario > 8 || horario < 21) {
 			this.horario = horario;
 		} else {
 			this.horario = 12;
@@ -72,7 +72,54 @@ public class Curso {
 		this.inscritos = new ArrayList<Alumno>();
 		this.matriculasDelCurso = new ArrayList<Matricula>();
 		this.codigo = idioma.substring(0, 3) + nivel;
+	}
 
+	/**
+	 * 
+	 * Metodo que añade un alumno a la Lista inscritos y la matricula creada a
+	 * la Lista matriculasDelCurso si hay plazas disponibles
+	 * 
+	 * @return matricula en caso de que se pueda crear y null en caso contrario
+	 */
+	public Matricula matricular(Alumno alumno) {
+		if (plazaDisponible(alumno)) {
+			inscritos.add(alumno);
+			matriculasDelCurso.add(new Matricula(alumno, this));
+			return matriculasDelCurso.get(matriculasDelCurso.size() - 1);
+		}
+		return null;
+	}
+
+	/**
+	 * Funcion booleana que comprueba si hay plazas disponibles o si el alumno
+	 * que se quiere inscribir ya esta inscrito
+	 */
+	public boolean plazaDisponible(Alumno alumno) {
+		if (maxAlumnos > inscritos.size()) {
+			for (int i = 0; i < inscritos.size(); i++) {
+				if (inscritos.get(i).equals(alumno)) {
+					return false;
+				}
+			}
+			return true;
+		} else
+			return false;
+	}
+
+	/**
+	 * Metodo que elimina un alumno de la lista de alumnos inscritos
+	 * <code>inscritos</code>
+	 */
+	public void eliminaAlumno(Alumno alumno) {
+		inscritos.remove(alumno);
+	}
+
+	/**
+	 * Metodo que añado un alumno a la lista de alumnos inscritos
+	 * <code>inscritos</code>
+	 */
+	public void agregaAlumno(Alumno alumno) {
+		inscritos.add(alumno);
 	}
 
 	/**
@@ -177,28 +224,6 @@ public class Curso {
 		return horario;
 	}
 
-	public void setSuperior(Curso cursoSuperior) {
-		this.cursoNivelSuperior = cursoSuperior;
-	}
-
-	public void setInferior(Curso cursoInferior) {
-		this.cursoNivelInferior = cursoInferior;
-	}
-
-	/**
-	 * Metodo que elimina un alumno de la lista de alumnos inscritos <code>inscritos</code>
-	 */
-	public void eliminaAlumno(Alumno alumno) {
-		inscritos.remove(alumno);
-	}
-
-	/**
-	 * Metodo que añado un alumno a la lista de alumnos inscritos <code>inscritos</code>
-	 */
-	public void agregaAlumno(Alumno alumno) {
-		inscritos.add(alumno);
-	}
-
 	/**
 	 * Getter del atributo <code>matriculaDelCurso</code>
 	 * 
@@ -210,11 +235,11 @@ public class Curso {
 	}
 
 	/**
-	 * Crea y rellena la lista de las matriculas sin pagar 
-	 * asociadas a <code>Curso</code>
+	 * Crea y rellena la lista de las matriculas sin pagar asociadas a
+	 * <code>Curso</code>
 	 * 
-	 * @return pendientes Lista con la lista de las matriculas 
-	 * sin pagar de <code>Curso</code>
+	 * @return pendientes Lista con la lista de las matriculas sin pagar de
+	 *         <code>Curso</code>
 	 */
 	public ArrayList<Matricula> getMatriculasSinPago() {
 		ArrayList<Matricula> pendientes = new ArrayList<Matricula>();
@@ -227,43 +252,83 @@ public class Curso {
 	}
 
 	/**
+	 * Setter del atributo <code>cursoNivelSuperior</code>
 	 * 
-	 * Metodo que añade un alumno a la Lista inscritos y la matricula creada a
-	 * la Lista matriculasDelCurso si hay plazas disponibles
-	 * 
-	 * @return matricula en caso de que se pueda crear y null en caso contrario
+	 * @param cursoSuperior
+	 *            Curso con el curso superior de <code>Curso</code>
 	 */
-	public Matricula matricular(Alumno alumno) {
-		if (plazaDisponible(alumno)) {
-			inscritos.add(alumno);
-			matriculasDelCurso.add(new Matricula(alumno, this));
-			return matriculasDelCurso.get(matriculasDelCurso.size() - 1);
-		}
-		return null;
+	public void setSuperior(Curso cursoSuperior) {
+		this.cursoNivelSuperior = cursoSuperior;
 	}
 
 	/**
+	 * Setter del atributo <code>cursoNivelInferior</code>
 	 * 
-	 * Funcion booleana que comprueba si hay plazas disponibles o si el alumno
-	 * que se quiere inscribir ya esta inscrito
+	 * @param cursoInferior
+	 *            Curso con el curso inferior de <code>Curso</code>
 	 */
-	public boolean plazaDisponible(Alumno alumno) {
-		if (maxAlumnos > inscritos.size()) {
-			for (int i = 0; i < inscritos.size(); i++) {
-				if (inscritos.get(i).equals(alumno)) {
-					return false;
-				}
-			}
-			return true;
-		} else
-			return false;
+	public void setInferior(Curso cursoInferior) {
+		this.cursoNivelInferior = cursoInferior;
 	}
+
+	/**
+	 * Setter del atributo <code>idioma</code>
+	 * 
+	 * @param idioma
+	 *            String con el idioma de <code>Curso</code>
+	 */
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	/**
+	 * Setter del atributo <code>Nivel</code>
+	 * 
+	 * @param nivel
+	 *            Entero con el nivel de <code>Curso</code>
+	 */
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+
+	/**
+	 * Setter del atributo <code>fInicio</code>
+	 * 
+	 * @param fInicio
+	 *            Calendar con la fecha de inicio de <code>Curso</code>
+	 */
+	public void setFInicio(Calendar fInicio) {
+		this.fInicio = fInicio;
+	}
+
+	/**
+	 * Setter del atributo <code>fFinal</code>
+	 * 
+	 * @param fFinal
+	 *            Calendar con la fecha final de <code>Curso</code>
+	 */
+	public void setFFinal(Calendar fFinal) {
+		this.fFinal = fFinal;
+	}
+
+	/**
+	 * Setter del atributo <code>Horario</code>
+	 * 
+	 * @param horario
+	 *            Entero con la hora de <code>Curso</code>
+	 */
+	public void setHorario(int horario) {
+		this.horario = horario;
+	}
+
 	/**
 	 * Sobreescribe el metodo toString() de la clase <code>Object</code>
 	 * 
-	 * Devuelve una cadena de caracteres con el formato Curso: xxxx; Idioma: xxxx; Nivel: xxx;
+	 * Devuelve una cadena de caracteres con el formato Curso: xxxx; Idioma:
+	 * xxxx; Nivel: xxx;
 	 * 
-	 * @return Cadena de caracteres que representa el estado del objeto <code>Curso</code>
+	 * @return Cadena de caracteres que representa el estado del objeto
+	 *         <code>Curso</code>
 	 */
 	@Override
 	public String toString() {
