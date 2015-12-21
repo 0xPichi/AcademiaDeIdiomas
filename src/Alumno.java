@@ -28,6 +28,10 @@ public class Alumno {
 		this.dni = dni;
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
+	public Alumno(String nombre, String apellidos) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+	}
 	/**
 	 * Funcion que calcula la deuda acumulada del <code>Alumno</code>
 	 * 
