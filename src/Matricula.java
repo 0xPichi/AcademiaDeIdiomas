@@ -17,8 +17,10 @@ public class Matricula {
 	/**
 	 * Constructor de la clase <code>Matricula</code>
 	 * 
-	 * @param alumno Alumno asociado a la clase <code>Matricula</code>
-	 * @param curso Curso asociado a la clase <code>Matricula</code>
+	 * @param alumno
+	 *            Alumno asociado a la clase <code>Matricula</code>
+	 * @param curso
+	 *            Curso asociado a la clase <code>Matricula</code>
 	 */
 
 	public Matricula(Alumno alumno, Curso curso) {
@@ -28,7 +30,31 @@ public class Matricula {
 		pagado = false;
 		alumno.addMatricula(this);
 	}
-	
+
+	/**
+	 * Metodo que comprueba y cambia de ser posible a un nivel superior el
+	 * atributo <code>curso</code>
+	 */
+	public void subirNivel() {
+		if (curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(this.alumno)) {
+			this.curso.eliminaAlumno(alumno);
+			this.curso.getCursoSuperior().agregaAlumno(alumno);
+			this.curso = curso.getCursoSuperior();
+		}
+	}
+
+	/**
+	 * Metodo que comprueba y cambia de ser posible a un nivel inferior el
+	 * atributo <code>curso</code>
+	 */
+	public void bajarNivel() {
+		if (curso.getCursoInferior() != null && curso.getCursoInferior().plazaDisponible(this.alumno)) {
+			this.curso.eliminaAlumno(alumno);
+			this.curso.getCursoInferior().agregaAlumno(alumno);
+			this.curso = curso.getCursoInferior();
+		}
+	}
+
 	/**
 	 * Getter del atributo <code>numMatr</code>
 	 * 
@@ -73,39 +99,6 @@ public class Matricula {
 	}
 
 	/**
-	 * Metodo que cambia el valor del atributo <code>pagado</code> a true
-	 */
-	public void pagar() {
-		pagado = true;
-	}
-
-	/**
-	 * Metodo que comprueba y cambia de ser posible a un nivel superior
-	 * el atributo <code>curso</code>
-	 */
-	public void subirNivel() {
-		if (curso.getCursoSuperior() != null 
-				&& curso.getCursoSuperior().plazaDisponible(this.alumno)) {
-			this.curso.eliminaAlumno(alumno);
-			this.curso.getCursoSuperior().agregaAlumno(alumno);
-			this.curso = curso.getCursoSuperior();
-		}
-	}
-
-	/**
-	 * Metodo que comprueba y cambia de ser posible a un nivel inferior
-	 * el atributo <code>curso</code>
-	 */
-	public void bajarNivel() {
-		if (curso.getCursoInferior() != null 
-				&& curso.getCursoInferior().plazaDisponible(this.alumno)) {
-			this.curso.eliminaAlumno(alumno);
-			this.curso.getCursoInferior().agregaAlumno(alumno);
-			this.curso = curso.getCursoInferior();
-		}
-	}
-
-	/**
 	 * Getter del atributo <code>precio</code> de la clase <code>Curso</code>
 	 * 
 	 * @return float con el valor de la deuda de la matricula
@@ -115,5 +108,32 @@ public class Matricula {
 			return 0;
 		}
 		return curso.getPrecio();
+	}
+
+	/**
+	 * Setter del atributo <code>Alumno</code>
+	 * 
+	 * @param alumno
+	 *            Alumno asociado a la <code>Matricula</code>
+	 */
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+
+	/**
+	 * Setter del atributo <code>Curso</code>
+	 * 
+	 * @param curso
+	 *            Curso asociado a la <code>Matricula</code>
+	 */
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	/**
+	 * Metodo que cambia el valor del atributo <code>pagado</code> a true
+	 */
+	public void pagar() {
+		pagado = true;
 	}
 }
