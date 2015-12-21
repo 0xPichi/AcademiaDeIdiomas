@@ -33,14 +33,12 @@ public class Alumno {
 		this.dni = dni;
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
-<<<<<<< HEAD
+	
 	public Alumno(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 	}
-=======
 
->>>>>>> origin/master
 	/**
 	 * Funcion que calcula la deuda acumulada del <code>Alumno</code>
 	 * 
@@ -158,9 +156,7 @@ public class Alumno {
 	 */
 	@Override
 	public boolean equals(Object object) {
-		if (!(object instanceof Alumno)) {
-			return false;
-		}
+		assert(object instanceof Alumno);
 		if (!(this.dni.equals(((Alumno) object).getDni()))) {
 			return false;
 

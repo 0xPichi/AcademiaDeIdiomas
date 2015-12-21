@@ -32,29 +32,7 @@ public class Matricula {
 		alumno.addMatricula(this);
 	}
 
-	/**
-	 * Metodo que comprueba y cambia de ser posible a un nivel superior el
-	 * atributo <code>curso</code>
-	 */
-	public void subirNivel() {
-		if (curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(this.alumno)) {
-			this.curso.eliminaAlumno(alumno);
-			this.curso.getCursoSuperior().agregaAlumno(alumno);
-			this.curso = curso.getCursoSuperior();
-		}
-	}
 
-	/**
-	 * Metodo que comprueba y cambia de ser posible a un nivel inferior el
-	 * atributo <code>curso</code>
-	 */
-	public void bajarNivel() {
-		if (curso.getCursoInferior() != null && curso.getCursoInferior().plazaDisponible(this.alumno)) {
-			this.curso.eliminaAlumno(alumno);
-			this.curso.getCursoInferior().agregaAlumno(alumno);
-			this.curso = curso.getCursoInferior();
-		}
-	}
 
 	/**
 	 * Getter del atributo <code>numMatr</code>

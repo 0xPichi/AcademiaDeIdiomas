@@ -4,23 +4,28 @@ public class MatriculaJunior extends Matricula {
 	private int telefonoDeContacto;
 	
 	public MatriculaJunior(Junior alumno, CursoJunior curso, int telefono) {
-		//Comprobar edad del niño respecto a la edad para el curso
-		//¿¿¿¿¿¿¿¿¿¿¿¿¿¿Assert????????????????????
 		super(alumno, curso);
+		//assert(comprobarEdad());
+		//assert(curso.plazaDisponible(alumno));
+		alumno.addMatricula(this);
+		curso.agregaAlumno(alumno);
 		this.telefonoDeContacto = telefono;
 		
 	}
 	
-	@Override
-	public void subirNivel() {
-		//assert(!(curso instanceof CursoNormal))
-	}
-	//Hay que mirarlo
-	@Override
-	public void bajarNivel(){}
-	//Y esto tambien
-	
 	public int getTelefono() {
 		return telefonoDeContacto;
+	}
+	
+	public CursoJunior getCurso() {
+		return (CursoJunior)super.getCurso();
+	}
+	
+	public Junior getAlumno() {
+		return (Junior)super.getAlumno();
+	}
+	//Implement
+	public boolean comprobarEdad() {
+		return true;
 	}
 }

@@ -8,6 +8,7 @@ public class Junior extends Alumno {
 	public Junior(String nombre, String apellidos, Date fechaNacimiento, Adulto responsable) {
 		super(nombre, apellidos);
 		this.fechaNacimiento = fechaNacimiento;
+		assert(responsable != null);
 		this.adultoResponsable = responsable;
 		
 	}
@@ -24,7 +25,9 @@ public class Junior extends Alumno {
 	public float calculaDeuda() {
 		return 0;
 	}
-
-	
+	//Implementar
+	public boolean compruebaEdad(){
+		return true;
+	}
 
 }

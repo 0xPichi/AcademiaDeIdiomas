@@ -14,7 +14,6 @@ public class Curso {
 
 	private String codigo;
 	private String idioma;
-	private int nivel;
 	private Calendar fInicio;
 	private Calendar fFinal;
 	private int horario;
@@ -22,16 +21,13 @@ public class Curso {
 	private final float precio;
 	private ArrayList<Alumno> inscritos;
 	private ArrayList<Matricula> matriculasDelCurso;
-	private Curso cursoNivelSuperior;
-	private Curso cursoNivelInferior;
+
 
 	/**
 	 * Constructor de la clase <code>Curso</code>
 	 * 
 	 * @param idioma
 	 *            String con el idioma de <code>Curso</code>
-	 * @param nivel
-	 *            int con el nivel de <code>Curso</code>
 	 * @param fInicio
 	 *            Fecha inicial de <code>Curso</code>
 	 * @param fFinal
@@ -42,16 +38,10 @@ public class Curso {
 	 *            float con el numero maximo de alumnos de <code>Curso</code>
 	 * @param precio
 	 *            float con el precio de <code>Curso</code>
-	 * @param cursoNivelSuperior
-	 *            Curso de nivel superior asociado a la clase <code>Curso</code>
-	 * @param cursoNivelInferior
-	 *            Curso de nivel inferior asociado a la clase <code>Curso</code>
 	 */
 
-	public Curso(String idioma, int nivel, Calendar fInicio, Calendar fFinal, int horario, int maxAlumnos, float precio,
-			Curso cursoNivelSuperior, Curso cursoNivelInferior) {
+	public Curso(String idioma, Calendar fInicio, Calendar fFinal, int horario, int maxAlumnos, float precio) {
 		this.idioma = idioma;
-		this.nivel = nivel;
 		if (fInicio.after(fFinal)) {
 			this.fInicio = fInicio;
 			this.fFinal = fFinal;
@@ -67,27 +57,9 @@ public class Curso {
 		this.horario = horario;
 		this.maxAlumnos = maxAlumnos;
 		this.precio = precio;
-		this.cursoNivelInferior = cursoNivelInferior;
-		this.cursoNivelSuperior = cursoNivelSuperior;
 		this.inscritos = new ArrayList<Alumno>();
 		this.matriculasDelCurso = new ArrayList<Matricula>();
-		this.codigo = idioma.substring(0, 3) + nivel;
-	}
-
-	/**
-	 * 
-	 * Metodo que añade un alumno a la Lista inscritos y la matricula creada a
-	 * la Lista matriculasDelCurso si hay plazas disponibles
-	 * 
-	 * @return matricula en caso de que se pueda crear y null en caso contrario
-	 */
-	public Matricula matricular(Alumno alumno) {
-		if (plazaDisponible(alumno)) {
-			inscritos.add(alumno);
-			matriculasDelCurso.add(new Matricula(alumno, this));
-			return matriculasDelCurso.get(matriculasDelCurso.size() - 1);
-		}
-		return null;
+		this.codigo = idioma.substring(0, 3);
 	}
 
 	/**
@@ -122,14 +94,6 @@ public class Curso {
 		inscritos.add(alumno);
 	}
 
-	/**
-	 * Getter del atributo <code>nivel</code>
-	 * 
-	 * @return nivel int con el nivel de <code>Curso</code>
-	 */
-	public int getNivel() {
-		return nivel;
-	}
 
 	/**
 	 * Getter del atributo <code>maxAlumnos</code>
@@ -177,25 +141,6 @@ public class Curso {
 		return inscritos;
 	}
 
-	/**
-	 * Getter del atributo <code>cursoNivelSuperior</code>
-	 * 
-	 * @return cursoNivelSuperior Curso curso de nivel superior de
-	 *         <code>Curso</code>
-	 */
-	public Curso getCursoSuperior() {
-		return cursoNivelSuperior;
-	}
-
-	/**
-	 * Getter del atributo <code>cursoNivelInferior</code>
-	 * 
-	 * @return cursoNivelInferior Curso con el curso inferior de
-	 *         <code>Curso</code>
-	 */
-	public Curso getCursoInferior() {
-		return cursoNivelInferior;
-	}
 
 	/**
 	 * Getter del atributo <code>fFinal</code>
@@ -252,26 +197,6 @@ public class Curso {
 	}
 
 	/**
-	 * Setter del atributo <code>cursoNivelSuperior</code>
-	 * 
-	 * @param cursoSuperior
-	 *            Curso con el curso superior de <code>Curso</code>
-	 */
-	public void setSuperior(Curso cursoSuperior) {
-		this.cursoNivelSuperior = cursoSuperior;
-	}
-
-	/**
-	 * Setter del atributo <code>cursoNivelInferior</code>
-	 * 
-	 * @param cursoInferior
-	 *            Curso con el curso inferior de <code>Curso</code>
-	 */
-	public void setInferior(Curso cursoInferior) {
-		this.cursoNivelInferior = cursoInferior;
-	}
-
-	/**
 	 * Setter del atributo <code>idioma</code>
 	 * 
 	 * @param idioma
@@ -279,16 +204,6 @@ public class Curso {
 	 */
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
-	}
-
-	/**
-	 * Setter del atributo <code>Nivel</code>
-	 * 
-	 * @param nivel
-	 *            Entero con el nivel de <code>Curso</code>
-	 */
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
 	}
 
 	/**
@@ -325,14 +240,14 @@ public class Curso {
 	 * Sobreescribe el metodo toString() de la clase <code>Object</code>
 	 * 
 	 * Devuelve una cadena de caracteres con el formato Curso: xxxx; Idioma:
-	 * xxxx; Nivel: xxx;
+	 * xxxx;
 	 * 
 	 * @return Cadena de caracteres que representa el estado del objeto
 	 *         <code>Curso</code>
 	 */
 	@Override
 	public String toString() {
-		return "Curso: " + this.codigo + "; Idioma: " + this.idioma + "; Nivel: " + this.nivel;
+		return "Curso: " + this.codigo + "; Idioma: " + this.idioma;
 
 	}
 }
