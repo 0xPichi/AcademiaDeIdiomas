@@ -6,6 +6,7 @@
  * @author Sergio Delgado Álvarez
  * @author Miguel Bayón Sanz
  * @author Daniel Paredes Santamaría
+ * 
  *
  */
 public class Matricula {

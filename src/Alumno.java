@@ -33,7 +33,14 @@ public class Alumno {
 		this.dni = dni;
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
+<<<<<<< HEAD
+	public Alumno(String nombre, String apellidos) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+	}
+=======
 
+>>>>>>> origin/master
 	/**
 	 * Funcion que calcula la deuda acumulada del <code>Alumno</code>
 	 * 
