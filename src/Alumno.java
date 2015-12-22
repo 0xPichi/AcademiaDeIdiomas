@@ -34,6 +34,14 @@ public class Alumno {
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
 
+	/**
+	 * Constructor de la clase <code>Alumno</code>
+	 * 
+	 * @param nombre
+	 *            String con el nombre de <code>Alumno</code>
+	 * @param apellidos
+	 *            String con los apellidos de <code>Alumno</code>
+	 */
 	public Alumno(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -111,10 +119,6 @@ public class Alumno {
 		return apellidos;
 	}
 
-	public Alumno getAlumno() {
-		return this;
-	}
-
 	/**
 	 * Getter del atributo <code>dni</code>
 	 * 
@@ -158,7 +162,7 @@ public class Alumno {
 	 * Sobreescribe el metodo toString() de la clase <code>Object</code>
 	 * 
 	 * Devuelve una cadena de caracteres con el formato: Nombre: xxxx;
-	 * Apellidos: xxxx; DNI: xxx.
+	 * Apellidos: xxxx.
 	 * 
 	 * @return String cadena de caracteres que representa el estado del objeto
 	 *         <code>Alumno</code>

@@ -22,7 +22,6 @@ public class Curso {
 	private ArrayList<Alumno> inscritos;
 	private ArrayList<Matricula> matriculasDelCurso;
 
-
 	/**
 	 * Constructor de la clase <code>Curso</code>
 	 * 
@@ -70,14 +69,11 @@ public class Curso {
 		if (maxAlumnos > inscritos.size()) {
 			for (int i = 0; i < inscritos.size(); i++) {
 				if (inscritos.get(i).equals(alumno)) {
-					System.out.println("No es posible inscribir a "+alumno.getNombre());
 					return false;
 				}
 			}
-			System.out.println("El alumno "+alumno.getNombre()+" se puede inscribir!");
 			return true;
 		} else
-			System.out.println("No quedan plazas libres en este curso");
 			return false;
 	}
 
@@ -96,7 +92,6 @@ public class Curso {
 	public void agregaAlumno(Alumno alumno) {
 		inscritos.add(alumno);
 	}
-
 
 	/**
 	 * Getter del atributo <code>maxAlumnos</code>
@@ -143,7 +138,6 @@ public class Curso {
 	public ArrayList<Alumno> getListaAlumnos() {
 		return inscritos;
 	}
-
 
 	/**
 	 * Getter del atributo <code>fFinal</code>

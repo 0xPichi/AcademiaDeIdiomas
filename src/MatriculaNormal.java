@@ -1,21 +1,29 @@
 
 public class MatriculaNormal extends Matricula {
-	
+
+	/**
+	 * Constructor de la clase <code>MatriculaNormal</code>
+	 * 
+	 * @param alumno
+	 *            Alumno asociado a la clase <code>MatriculaNormal</code>
+	 * @param curso
+	 *            Curso asociado a la clase <code>MatriculaNormal</code>
+	 */
 	public MatriculaNormal(Alumno alumno, CursoNormal curso) {
 		super(alumno, curso);
 		assert(curso.plazaDisponible(alumno));
 		curso.agregaAlumno(alumno);
 		alumno.addMatricula(this);
-		
+
 	}
-	
+
 	/**
 	 * Metodo que comprueba y cambia de ser posible a un nivel superior el
 	 * atributo <code>curso</code>
 	 */
 	public void subirNivel() {
 		CursoNormal curso = null;
-		if(super.getCurso() instanceof CursoNormal) {
+		if (super.getCurso() instanceof CursoNormal) {
 			curso = (CursoNormal) super.getCurso();
 		}
 		if (curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(super.getAlumno())) {
@@ -31,8 +39,8 @@ public class MatriculaNormal extends Matricula {
 	 */
 	public void bajarNivel() {
 		CursoNormal curso = null;
-		if(super.getCurso() instanceof CursoNormal) {
-			curso = (CursoNormal)super.getCurso();
+		if (super.getCurso() instanceof CursoNormal) {
+			curso = (CursoNormal) super.getCurso();
 		}
 		if (curso.getCursoInferior() != null && curso.getCursoInferior().plazaDisponible(super.getAlumno())) {
 			curso.eliminaAlumno(super.getAlumno());
@@ -40,6 +48,5 @@ public class MatriculaNormal extends Matricula {
 			this.setCurso(curso.getCursoInferior());
 		}
 	}
-	
 
 }

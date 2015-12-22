@@ -6,6 +6,20 @@ public class Junior extends Alumno {
 	private GregorianCalendar fechaNacimiento;
 	private Adulto adultoResponsable;
 
+	/**
+	 * Constructor de la clase <code>Junior</code> que hereda de
+	 * <code>Alumno</code>
+	 * 
+	 * @param nombre
+	 *            String con el nombre de <code>Junior</code>
+	 * @param apellidos
+	 *            String con los apellidos de <code>Junior</code>
+	 * @param fechaNacimiento
+	 *            GregorianCalendar con la fecha de nacimiento de
+	 *            <code>Junior</code>
+	 * @param responsable
+	 *            Adulto responsable de <code>Junior</code>
+	 */
 	public Junior(String nombre, String apellidos, GregorianCalendar fechaNacimiento, Adulto responsable) {
 		super(nombre, apellidos);
 		this.fechaNacimiento = fechaNacimiento;
@@ -14,19 +28,41 @@ public class Junior extends Alumno {
 
 	}
 
+	/**
+	 * Getter del atributo <code>fechaNacimiento</code>
+	 * 
+	 * @return fechaNacimiento GregorianCalendar con la fecha de nacimiento del
+	 *         <code>Junior</code>
+	 */
 	public GregorianCalendar getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
+	/**
+	 * Getter del atributo <code>adultoResponsable</code>
+	 * 
+	 * @return adultoResponsable Adulto encargado del <code>Junior</code>
+	 */
 	public Adulto getAdultoResponsable() {
 		return adultoResponsable;
 	}
 
+	/**
+	 * Metodo que sobreescribe el metodo calculadeuda() de la clase
+	 * <code>Alumno</code>
+	 * 
+	 * Puesto que la deuda de alumno la lleva exclusivamente el adulto
+	 * responsable, devuelve 0
+	 */
 	@Override
 	public float calculaDeuda() {
 		return 0;
 	}
 
+	/**
+	 * Metodo que compara la edad de <code>Junior</code> y comprueba que sea
+	 * menor de edad
+	 */
 	public boolean compruebaEdad() {
 		GregorianCalendar menor = new GregorianCalendar();
 		menor.set(Calendar.YEAR, menor.get(Calendar.YEAR) - 17);
