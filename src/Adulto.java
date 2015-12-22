@@ -6,6 +6,7 @@ public class Adulto extends Alumno {
 
 	public Adulto(String nombre, String apellidos, String dni) {
 		super(nombre, apellidos, dni);
+		listaDeMatriculasJunior = new ArrayList<MatriculaJunior>();
 
 	}
 
@@ -37,5 +38,10 @@ public class Adulto extends Alumno {
 			listaJuniors.add(listaDeMatriculasJunior.get(i).getAlumno());
 		}
 		return listaJuniors;
+	}
+	
+	@Override
+	public String toString() {
+		return "Nombre: " + super.getNombre() + "; Apellidos: " + super.getApellidos() + "; DNI: " + super.getDni();
 	}
 }

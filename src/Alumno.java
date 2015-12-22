@@ -33,7 +33,7 @@ public class Alumno {
 		this.dni = dni;
 		listaDeMatriculas = new ArrayList<Matricula>();
 	}
-	
+
 	public Alumno(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -64,8 +64,8 @@ public class Alumno {
 	 */
 	public ArrayList<Curso> getListaDeCursos() {
 		ArrayList<Curso> listaDeCursos = new ArrayList<Curso>();
-		for (int i = 0; i < listaDeMatriculas.size(); i++) {
-			listaDeCursos.add(listaDeMatriculas.get(i).getCurso());
+		for (int i = 0; i < this.listaDeMatriculas.size(); i++) {
+			listaDeCursos.add(this.listaDeMatriculas.get(i).getCurso());
 		}
 		return listaDeCursos;
 	}
@@ -109,6 +109,10 @@ public class Alumno {
 	public String getApellidos() {
 		return apellidos;
 	}
+	
+	public Alumno getAlumno(){
+		return this;
+	}
 
 	/**
 	 * Getter del atributo <code>dni</code>
@@ -122,7 +126,8 @@ public class Alumno {
 	/**
 	 * Setter del atributo <code>nombre</code>
 	 * 
-	 * @param nombre String con el nombre de <code>Alumno</code>
+	 * @param nombre
+	 *            String con el nombre de <code>Alumno</code>
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -131,7 +136,8 @@ public class Alumno {
 	/**
 	 * Setter del atributo <code>apellidos</code>
 	 * 
-	 * @param apellidos String con los apellidos de <code>Alumno</code>
+	 * @param apellidos
+	 *            String con los apellidos de <code>Alumno</code>
 	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
@@ -140,12 +146,13 @@ public class Alumno {
 	/**
 	 * Setter del atributo <code>dni</code>
 	 * 
-	 * @param dni String con el DNI de <code>Alumno</code>
+	 * @param dni
+	 *            String con el DNI de <code>Alumno</code>
 	 */
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
+
 	/**
 	 * Metodo que sobreescribe el metodo equals(Object object) de la clase
 	 * <code>Object</code>.
@@ -176,6 +183,6 @@ public class Alumno {
 	 */
 	@Override
 	public String toString() {
-		return "Nombre: " + nombre + "; Apellidos: " + apellidos + "; DNI: " + dni;
+		return "Nombre: " + nombre + "; Apellidos: " + apellidos;
 	}
 }
