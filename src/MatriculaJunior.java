@@ -7,8 +7,9 @@ public class MatriculaJunior extends Matricula {
 	
 	public MatriculaJunior(Junior alumno, CursoJunior curso, int telefono) {
 		super(alumno, curso);
-		//assert(comprobarEdad());
-		//assert(curso.plazaDisponible(alumno));
+		assert(comprobarEdad());
+		assert(curso.plazaDisponible(alumno));
+		alumno.getAdultoResponsable().addMatriculaJunior(this);
 		alumno.addMatricula(this);
 		curso.agregaAlumno(alumno);
 		this.telefonoDeContacto = telefono;

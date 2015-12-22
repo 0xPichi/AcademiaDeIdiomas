@@ -70,11 +70,14 @@ public class Curso {
 		if (maxAlumnos > inscritos.size()) {
 			for (int i = 0; i < inscritos.size(); i++) {
 				if (inscritos.get(i).equals(alumno)) {
+					System.out.println("No es posible inscribir a "+alumno.getNombre());
 					return false;
 				}
 			}
+			System.out.println("El alumno "+alumno.getNombre()+" se puede inscribir!");
 			return true;
 		} else
+			System.out.println("No quedan plazas libres en este curso");
 			return false;
 	}
 

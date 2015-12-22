@@ -37,6 +37,7 @@ public class Alumno {
 	public Alumno(String nombre, String apellidos) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
+		listaDeMatriculas = new ArrayList<Matricula>();
 	}
 
 	/**
@@ -109,8 +110,8 @@ public class Alumno {
 	public String getApellidos() {
 		return apellidos;
 	}
-	
-	public Alumno getAlumno(){
+
+	public Alumno getAlumno() {
 		return this;
 	}
 
@@ -151,25 +152,6 @@ public class Alumno {
 	 */
 	public void setDni(String dni) {
 		this.dni = dni;
-	}
-
-	/**
-	 * Metodo que sobreescribe el metodo equals(Object object) de la clase
-	 * <code>Object</code>.
-	 * 
-	 * Determina si dos instancias de la clase <code>Alumno</code> son iguales a
-	 * partir del numero de <code>dni</code>.
-	 * 
-	 */
-	@Override
-	public boolean equals(Object object) {
-		assert(object instanceof Alumno);
-		if (!(this.dni.equals(((Alumno) object).getDni()))) {
-			return false;
-
-		} else
-			return true;
-
 	}
 
 	/**

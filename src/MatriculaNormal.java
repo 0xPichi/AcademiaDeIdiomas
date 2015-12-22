@@ -21,7 +21,7 @@ public class MatriculaNormal extends Matricula {
 		if (curso.getCursoSuperior() != null && curso.getCursoSuperior().plazaDisponible(super.getAlumno())) {
 			curso.eliminaAlumno(super.getAlumno());
 			curso.getCursoSuperior().agregaAlumno(super.getAlumno());
-			curso = curso.getCursoSuperior();
+			curso = (CursoNormal)curso.getCursoSuperior();
 		}
 	}
 

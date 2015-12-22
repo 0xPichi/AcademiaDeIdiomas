@@ -29,7 +29,7 @@ public class Matricula {
 		this.curso = curso;
 		numMatr = (int) Math.floor(Math.random() + 1 * 1000);
 		pagado = false;
-		alumno.addMatricula(this);
+		
 	}
 
 

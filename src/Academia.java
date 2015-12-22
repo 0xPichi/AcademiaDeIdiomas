@@ -177,10 +177,12 @@ public class Academia {
 		}
 	}
 	public static void subirNivelCurso(ArrayList<Matricula> listaDeMatriculas, Alumno alumno, Curso curso) {
+		MatriculaNormal matriculita = null;
 		for(int i = 0; i < listaDeMatriculas.size(); i++) {
 			if(listaDeMatriculas.get(i).getAlumno().equals(alumno)
 					&& listaDeMatriculas.get(i).getCurso().getCodigo().equals(curso.getCodigo())) {
-				listaDeMatriculas.get(i).subirNivel();
+				matriculita = (MatriculaNormal)listaDeMatriculas.get(i);
+				matriculita.subirNivel();
 			}
 		}
 	}

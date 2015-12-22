@@ -19,5 +19,18 @@ public class CursoJunior extends Curso {
 	public int getEdadMaxima(){
 		return edadMaxima;
 	}
+	/**
+	 * Funcion booleana que comprueba si hay plazas disponibles o si el alumno
+	 * que se quiere inscribir ya esta inscrito
+	 */
+	@Override
+	public boolean plazaDisponible(Alumno alumno) {
+		if(alumno instanceof Junior) {
+			if(super.plazaDisponible(alumno)) {
+				return true;
+			}else return false;
+		}
+		return false;
+	}
 
 }

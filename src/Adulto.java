@@ -18,17 +18,9 @@ public class Adulto extends Alumno {
 		return cursosJunior;
 	}
 
-	@Override
-	public float calculaDeuda() {
-		float deudaAcumulada;
-		deudaAcumulada = super.calculaDeuda();
-		for (int i = 0; i < listaDeMatriculasJunior.size(); i++) {
-			deudaAcumulada += listaDeMatriculasJunior.get(i).getPrecioDeMatricula();
-		}
-		return deudaAcumulada;
-	}
 
 	public void addMatriculaJunior(MatriculaJunior matricula) {
+		this.addMatricula(matricula);
 		listaDeMatriculasJunior.add(matricula);
 	}
 
@@ -39,7 +31,26 @@ public class Adulto extends Alumno {
 		}
 		return listaJuniors;
 	}
-	
+
+	/**
+	 * Metodo que sobreescribe el metodo equals(Object object) de la clase
+	 * <code>Object</code>.
+	 * 
+	 * Determina si dos instancias de la clase <code>Alumno</code> son iguales a
+	 * partir del numero de <code>dni</code>.
+	 * 
+	 */
+	@Override
+	public boolean equals(Object object) {
+		assert(object instanceof Alumno);
+		if (!(super.getDni().equals(((Alumno) object).getDni()))) {
+			return false;
+
+		} else
+			return true;
+
+	}
+
 	@Override
 	public String toString() {
 		return "Nombre: " + super.getNombre() + "; Apellidos: " + super.getApellidos() + "; DNI: " + super.getDni();
