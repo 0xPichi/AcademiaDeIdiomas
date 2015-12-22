@@ -1,3 +1,5 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MatriculaJunior extends Matricula {
 	
@@ -10,7 +12,6 @@ public class MatriculaJunior extends Matricula {
 		alumno.addMatricula(this);
 		curso.agregaAlumno(alumno);
 		this.telefonoDeContacto = telefono;
-		
 	}
 	
 	public int getTelefono() {
@@ -26,6 +27,13 @@ public class MatriculaJunior extends Matricula {
 	}
 	//Implement
 	public boolean comprobarEdad() {
+		GregorianCalendar menor = new GregorianCalendar();
+		menor.set(Calendar.YEAR, menor.get(Calendar.YEAR)-17);
+		Junior alumno = (Junior) super.getAlumno();
+		if(menor.before(alumno.getFechaNacimiento())){
+			return false;
+		}
+
 		return true;
 	}
 }
