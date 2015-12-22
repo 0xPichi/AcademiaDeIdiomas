@@ -42,4 +42,9 @@ public class CursoNormal extends Curso {
 		cursoNivelInferior = cursoInferior;
 	}
 
+	@Override
+	public String toString() {
+		return "Curso: " + super.getCodigo() + "; Idioma: " + super.getIdioma() + "; Nivel:" + this.nivel;
+
+	}
 }

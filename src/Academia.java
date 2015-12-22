@@ -19,21 +19,21 @@ public class Academia {
 		ArrayList<Curso> listaCursos = new ArrayList<Curso>();
 		ArrayList<Matricula> listaMatriculas = new ArrayList<>();
 		
-		//Creamos varios varios cursos de cada tipo: tres cursos normales y tres junior, y los agregamos a la lista
+		//Creamos 3 cursos de Ingles con un nivel diferente y uno de Aleman y los agregamos a una lista.
+		Curso ingles1 = new Curso("Ingles", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 10, 25, null, null);
+		Curso ingles2 = new Curso("Ingles", 2, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 20, 12, 35, null, ingles1);
+		Curso ingles3 = new Curso("Ingles", 3, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 17, 2, 50, null, ingles2);
+		ingles1.setSuperior(ingles2);
+		ingles2.setSuperior(ingles3);
+		ingles2.setInferior(ingles1);
+		Curso aleman1 = new Curso("Aleman", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 12, 15, 30, null, null);
 		
-		CursoNormal ingles1 = new CursoNormal("Ingles", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 10, 25, null, null);
-		CursoNormal ingles2 = new CursoNormal("Ingles", 2, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 20, 12, 35, null, ingles1);
-		CursoNormal ingles3 = new CursoNormal("Ingles", 3, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 17, 2, 50, null, ingles2);
-		ingles1.setCursoSuperior(ingles2);
-		ingles2.setCursoSuperior(ingles3);
-		ingles2.setCursoInferior(ingles1);
+		//Imprimimos la lista de cursos con sus alumnos matriculados, que en este momento sera ninguno.
 		
-		CursoJunior aleman = new CursoJunior("Aleman", new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 5, 50, 10, 16);
-		CursoJunior mongol = new CursoJunior("Aleman", new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 5, 50, 10, 16);
-		CursoJunior frances = new CursoJunior("Aleman", new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 10, 5, 50, 10, 16);
+		imprimeListaDeCursos(listaCursos);
+		System.out.println("-------------------------------------------------");
 		
-		
-/*		Curso aleman1 = new Curso("Aleman", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 12, 15, 30, null, null);
+		Curso aleman1 = new Curso("Aleman", 1, new GregorianCalendar(2015,11,25), new GregorianCalendar(2016,6,30), 12, 15, 30, null, null);
 		listaCursos.add(ingles1);
 		listaCursos.add(ingles2);
 		listaCursos.add(ingles3);
@@ -124,7 +124,7 @@ public class Academia {
 		imprimeAlumnosDeCurso(ingles1);
 		System.out.println("Ingles 2: ");
 		imprimeAlumnosDeCurso(ingles2);
-*/
+
 	}
 	public static void imprimeListaDeCursos(ArrayList<Curso> listaDeCursos) {
 		for(int i = 0; i < listaDeCursos.size(); i++) {
