@@ -22,8 +22,11 @@ public class Junior extends Alumno {
 	 */
 	public Junior(String nombre, String apellidos, GregorianCalendar fechaNacimiento, Adulto responsable) {
 		super(nombre, apellidos);
-		this.fechaNacimiento = fechaNacimiento;
 		assert(responsable != null);
+		assert(compruebaEdad());
+		assert(fechaNacimiento != null);
+		this.fechaNacimiento = fechaNacimiento;
+		
 		this.adultoResponsable = responsable;
 
 	}
@@ -66,7 +69,7 @@ public class Junior extends Alumno {
 	public boolean compruebaEdad() {
 		GregorianCalendar menor = new GregorianCalendar();
 		menor.set(Calendar.YEAR, menor.get(Calendar.YEAR) - 17);
-		Junior alumno = (Junior) super.getAlumno();
+		Junior alumno = (Junior) this;
 		if (menor.before(alumno.getFechaNacimiento())) {
 			return false;
 		}

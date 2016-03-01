@@ -97,6 +97,7 @@ public class Alumno {
 	 *            <code>Matricula</code> que se añade a la lista.
 	 */
 	public void addMatricula(Matricula matricula) {
+		assert(matricula != null);
 		listaDeMatriculas.add(matricula);
 
 	}

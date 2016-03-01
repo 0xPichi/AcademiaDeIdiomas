@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -114,85 +113,85 @@ public class NuevaAcademia {
 		// cursos, los matricularemos y guardamos sus matriculas a la lista
 
 		System.out.println("\nMatricular Miguel en Ingles 1 y Aleman 2");
-		if (ingles1.plazaDisponible(miguel)) {
+		if (plazaDisponible(miguel, ingles1)) {
 			MatriculaNormal miIn1 = new MatriculaNormal(miguel, ingles1);
 			listaMatriculas.add(miIn1);
 		}
-		if (aleman2.plazaDisponible(miguel)) {
+		if (plazaDisponible(miguel, ingles2)) {
 			MatriculaNormal miAl2 = new MatriculaNormal(miguel, aleman2);
 			listaMatriculas.add(miAl2);
 		}
 
 		System.out.println("\nMatricular Sergio en Ingles 3 y Aleman 2");
-		if (ingles3.plazaDisponible(sergio)) {
+		if (plazaDisponible(sergio, ingles3)) {
 			MatriculaNormal seIn3 = new MatriculaNormal(sergio, ingles3);
 			listaMatriculas.add(seIn3);
 		}
-		if (aleman2.plazaDisponible(sergio)) {
+		if (plazaDisponible(sergio, aleman2)) {
 			MatriculaNormal seAl2 = new MatriculaNormal(sergio, aleman2);
 			listaMatriculas.add(seAl2);
 		}
 		System.out.println("\nMatricular Ivan en Ingles 3");
-		if (ingles3.plazaDisponible(ivan)) {
+		if (plazaDisponible(ivan, ingles3)) {
 			MatriculaNormal ivIn3 = new MatriculaNormal(ivan, ingles3);
 			listaMatriculas.add(ivIn3);
 		}
 
 		System.out.println("\nMatricular Vicente en Aleman y Frances");
-		if (aleman.plazaDisponible(vicente)) {
+		if (plazaDisponible(vicente, aleman)) {
 			MatriculaJunior viAl = new MatriculaJunior((Junior) vicente, aleman, 983154679);
 			listaMatriculas.add(viAl);
 		}
 
-		if(frances.plazaDisponible(vicente)) {
+		if(plazaDisponible(vicente, frances)) {
 			MatriculaJunior viFr = new MatriculaJunior((Junior) vicente, frances, 983154679);
 			listaMatriculas.add(viFr);
 		}
 
 		System.out.println("\nMatricular Jonathan en frances");
-		if (frances.plazaDisponible(jony)) {
+		if (plazaDisponible(jony, frances)) {
 			MatriculaJunior joFr = new MatriculaJunior((Junior) jony, frances, 983154679);
 			listaMatriculas.add(joFr);
 		}
 
 		System.out.println("\nMatricular Alberto en chino");
-		if (chino.plazaDisponible(alberto)) {
+		if (plazaDisponible(alberto, chino)) {
 			MatriculaJunior alCh = new MatriculaJunior((Junior) alberto, chino, 983154679);
 			listaMatriculas.add(alCh);
 		}
 		
 		//Matriculamos a un junior en un curso normal
-		if (ingles2.plazaDisponible(alberto)) {
+		if (plazaDisponible(alberto, ingles2)) {
 			MatriculaNormal alIn2 = new MatriculaNormal((Junior) alberto, ingles2);
 			listaMatriculas.add(alIn2);
 		}
 		
 		//Intentamos matricular a un adulto en un curso junior
-		if (!aleman.plazaDisponible(ivan)) {
+		if (!plazaDisponible(ivan, aleman)) {
 			System.out.println("No se puede matricular a un adulto en un curso junior");
 		}
 		
 		//Intentamos meter a un adulto y a un junior en cursos que ya esten llenos
 		System.out.println("\nMatricular Ivan en Aleman 2");
-		if (aleman2.plazaDisponible(ivan)) {
+		if (plazaDisponible(ivan, aleman2)) {
 			MatriculaNormal ivAl2 = new MatriculaNormal(ivan, aleman2);
 			listaMatriculas.add(ivAl2);
 		}
 		System.out.println("\nMatricular Alberto en frances");
-		if (frances.plazaDisponible(alberto)) {
+		if (plazaDisponible(alberto, frances)) {
 			MatriculaJunior alFr = new MatriculaJunior((Junior) alberto, frances, 983154679);
 			listaMatriculas.add(alFr);
 		}
 		
 		//Intentamos matricular un alumno en un curso en el que ya este
 		System.out.println("\nMatricular Ivan en Ingles 3 otra vez");
-		if (ingles3.plazaDisponible(ivan)) {
+		if (plazaDisponible(ivan, ingles3)) {
 			MatriculaNormal ivIn3 = new MatriculaNormal(ivan, ingles3);
 			listaMatriculas.add(ivIn3);
 		}
 		
 		System.out.println("\nMatricular Jonathan en frances");
-		if (frances.plazaDisponible(jony)) {
+		if (plazaDisponible(jony, frances)) {
 			MatriculaJunior joFr = new MatriculaJunior((Junior) jony, frances, 983154679);
 			listaMatriculas.add(joFr);
 		}

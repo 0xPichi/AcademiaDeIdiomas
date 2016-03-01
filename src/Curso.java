@@ -40,19 +40,13 @@ public class Curso {
 	 */
 
 	public Curso(String idioma, Calendar fInicio, Calendar fFinal, int horario, int maxAlumnos, float precio) {
+		assert(fFinal.after(fInicio));
+		assert(horario > 8 && horario < 21);
+		assert(maxAlumnos > 0);
 		this.idioma = idioma;
-		if (fInicio.after(fFinal)) {
-			this.fInicio = fInicio;
-			this.fFinal = fFinal;
-		} else {
-			this.fInicio = fFinal;
-			this.fFinal = fInicio;
-		}
-		if (horario > 8 || horario < 21) {
-			this.horario = horario;
-		} else {
-			this.horario = 12;
-		}
+		this.fInicio = fInicio;
+		this.fFinal = fFinal;
+		this.horario = horario;
 		this.horario = horario;
 		this.maxAlumnos = maxAlumnos;
 		this.precio = precio;
@@ -90,6 +84,7 @@ public class Curso {
 	 * <code>inscritos</code>
 	 */
 	public void agregaAlumno(Alumno alumno) {
+		assert(alumno != null);
 		inscritos.add(alumno);
 	}
 
